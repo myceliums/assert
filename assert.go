@@ -65,7 +65,7 @@ func isNil(val interface{}) bool {
 // Nil asserts the given value is nil
 func (a Assert) Nil(actual interface{}, msg ...interface{}) {
 	t(a).Helper()
-	msg = prepMsg(msg, `Should be nil, but it isn't`)
+	msg = prepMsg(msg, `Should be nil, but got %#v`, actual)
 
 	a(isNil(actual), msg...)
 }
