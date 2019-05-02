@@ -99,6 +99,12 @@ func (a Assert) NoError(actual error, msg ...interface{}) {
 // Eq asserts the given values match
 func (a Assert) Eq(expected, actual interface{}, msg ...interface{}) {
 	t(a).Helper()
+	if reflect.TypeOf(expected) != reflect.TypeOf(actual) {
+		msg = prepMsg(msg, `Expected %T(%#v), but got %T(%#v)`, expected, expected, actual, actual)
+		a(false, msg...)
+		return
+	}
+
 	msg = prepMsg(msg, `Expected %#v, but got %#v`, expected, actual)
 	a(expected == actual, msg...)
 }
