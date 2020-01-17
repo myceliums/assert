@@ -3,14 +3,13 @@ package assert
 import (
 	"reflect"
 	"runtime"
-	"testing"
 )
 
 // Assert is a helper for tests
 type Assert func(bool, ...interface{})
 
 // New returns a new Assert
-func New(t *testing.T) Assert {
+func New(t T) Assert {
 	a := func(ok bool, msg ...interface{}) {
 		if !ok {
 			if msg == nil {

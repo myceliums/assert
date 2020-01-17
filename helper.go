@@ -5,7 +5,6 @@ import (
 	"reflect"
 	"runtime"
 	"strconv"
-	"testing"
 )
 
 func prepMsg(msg []interface{}, format string, args ...interface{}) []interface{} {
@@ -16,9 +15,9 @@ func shell(i int) string {
 	return "\x1B[" + strconv.Itoa(i) + "m"
 }
 
-var ts = map[*runtime.Func]*testing.T{}
+var ts = map[*runtime.Func]T{}
 
-func t(a Assert) *testing.T {
+func t(a Assert) T {
 	f := runtime.FuncForPC(reflect.ValueOf(a).Pointer())
 	return ts[f]
 }
