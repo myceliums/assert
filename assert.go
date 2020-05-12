@@ -3,6 +3,8 @@ package assert
 import (
 	"reflect"
 	"runtime"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 // Assert is a helper for tests
@@ -166,4 +168,13 @@ func (a Assert) SameElements(expected, actual interface{}, msg ...interface{}) {
 	}
 
 	a(false, msg...)
+}
+
+func (a Assert) Cmp(expected, actual interface{}, opts ...cmp.Option) {
+	diff := cmp.Diff(expected, actual, opts...)
+	if diff == `` {
+		return
+	}
+
+	a(false, "\n"+diff)
 }
