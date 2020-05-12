@@ -24,6 +24,10 @@ func New(t T) Assert {
 	f := runtime.FuncForPC(reflect.ValueOf(a).Pointer())
 	ts[f] = t
 
+	t.Cleanup(func() {
+		delete(ts, f)
+	})
+
 	return a
 }
 
