@@ -4,5 +4,4 @@ package assert
 type T interface {
 	Error(...interface{})
 	Helper()
-	Cleanup(func())
 }

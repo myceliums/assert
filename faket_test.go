@@ -13,8 +13,7 @@ func (t *fakeT) Error(_ ...interface{}) {
 	t.gotError = true
 }
 
-func (_ *fakeT) Helper()          {}
-func (_ *fakeT) Cleanup(_ func()) {}
+func (_ *fakeT) Helper() {}
 
 func (t *fakeT) GotError() bool {
 	r := t.gotError
