@@ -156,6 +156,7 @@ func (a Assert) SameElements(expected, actual interface{}, msg ...interface{}) {
 	a.f(false, msg, ``)
 }
 
+// Cmp assert wrapper for go-cmp
 func (a Assert) Cmp(expected, actual interface{}, opts ...cmp.Option) {
 	a.t.Helper()
 	diff := cmp.Diff(expected, actual, opts...)
@@ -164,4 +165,12 @@ func (a Assert) Cmp(expected, actual interface{}, opts ...cmp.Option) {
 	}
 
 	a.f(false, nil, "\n"+diff)
+}
+
+// NCmp assert wrapper for go-cmp but fails when !Equal
+func (a Assert) NCmp(expected, actual interface{}, opts ...cmp.Option) {
+	a.t.Helper()
+
+	ok := cmp.Equal(expected, actual, opts...)
+	a.f(!ok, nil, `Should not be %#v, but it is`, expected)
 }

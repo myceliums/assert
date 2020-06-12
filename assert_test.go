@@ -177,3 +177,18 @@ func TestCmpTimezones(t *testing.T) {
 	fa.Cmp(&A{ti}, &A{ti2})
 	assert.True(ft.GotError())
 }
+
+func TestNCmp(t *testing.T) {
+	assert := New(t)
+	ft, fa := newFakeT()
+
+	type A struct {
+		S string
+	}
+
+	fa.NCmp(A{"not"}, A{"equal"})
+	assert.False(ft.GotError())
+
+	fa.NCmp(A{"equal"}, A{"equal"})
+	assert.True(ft.GotError())
+}
