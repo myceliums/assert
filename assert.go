@@ -42,7 +42,7 @@ func (a Assert) True(actual bool, msg ...interface{}) {
 	a.f(actual, msg, `Should be true, but it isn't`)
 }
 
-// False sserts the given value is false
+// False asserts the given value is false
 func (a Assert) False(actual bool, msg ...interface{}) {
 	a.t.Helper()
 	a.f(!actual, msg, `Should be false, but it isn't`)
@@ -70,7 +70,7 @@ func (a Assert) Nil(actual interface{}, msg ...interface{}) {
 	a.f(isNil(actual), msg, `Should be nil, but got %#v`, actual)
 }
 
-// NotNil sserts the given value is not nil
+// NotNil asserts the given value is not nil
 func (a Assert) NotNil(actual interface{}, msg ...interface{}) {
 	a.t.Helper()
 	a.f(!isNil(actual), msg, `Should not be nil, but it is`)
@@ -84,7 +84,7 @@ func (a Assert) Error(actual error, msg ...interface{}) {
 	a.f(actual != nil, msg, `Expected an error, but got nil`)
 }
 
-// NoError asserts the given error is not nil
+// NoError asserts the given error is nil
 func (a Assert) NoError(actual error, msg ...interface{}) {
 	a.t.Helper()
 	a.f(actual == nil, msg, `Expected no error, but got %#v`, actual)
