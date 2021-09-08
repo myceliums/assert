@@ -1,4 +1,4 @@
-module git.fuyu.moe/Fuyu/assert
+module github.com/myceliums/assert
 
 go 1.14
 
